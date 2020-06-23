@@ -7,7 +7,6 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                    <p>Tutaj sa twoje karty</p>
                 </div>
             </div>
         </div>
