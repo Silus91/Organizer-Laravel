@@ -10,10 +10,8 @@ class CardsController extends Controller
 {
     public function index()
     {
-        $user_id = Auth::user()->id;
-
         $cards = Cards::userCards()->get();
-
+        $user = Auth::user();
         return view('card', ['cards' => $cards]);
     }
     public function store()
