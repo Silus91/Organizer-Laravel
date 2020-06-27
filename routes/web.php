@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/card', 'CardsController@index');
+Route::get('cards', 'CardsController@index');
+Route::post('cards', 'CardsController@store');
 
 Auth::routes();
 
