@@ -12,10 +12,15 @@ class CardsController extends Controller
     {
         $cards = Cards::userCards()->get();
         $user = Auth::user();
+
         return view('card', ['cards' => $cards]);
     }
+
     public function store()
     {
+        $data = request()->validate([
+           'name' => 'required|min:3',
+        ]);
 
         $user_id = Auth::user()->id;
         $card = new Cards();
@@ -23,20 +28,10 @@ class CardsController extends Controller
         $card->user_id = $user_id;
         $card->save();
 
-//        $data = request()->validate([
-//            'name' => 'required|min:3',
-//        ]);
+
 //        Cards::create($data);
         return back();
 
     }
 
-
-//    public function validateRequest()
-//    {
-//        return request()->validate([
-//            'name' => 'required|min:3',
-//
-//        ]);
-//    }
 }
