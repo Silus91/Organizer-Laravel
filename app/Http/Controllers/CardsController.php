@@ -11,9 +11,14 @@ class CardsController extends Controller
     public function index()
     {
         $cards = Cards::userCards()->get();
-        $user = Auth::user();
 
-        return view('card', ['cards' => $cards]);
+        return view('cards.index', ['cards' => $cards]);
+    }
+
+
+    public function create()
+    {
+        return view('cards.create');
     }
 
     public function store()
@@ -30,8 +35,13 @@ class CardsController extends Controller
 
 
 //        Cards::create($data);
-        return back();
+        return redirect('cards');
 
+    }
+
+    public function show(Cards $card)
+    {
+        return view('cards.show', compact('card'));
     }
 
 }

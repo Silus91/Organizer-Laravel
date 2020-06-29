@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('cards', 'CardsController@index');
+Route::get('cards/create', 'CardsController@create');
 Route::post('cards', 'CardsController@store');
+Route::get('cards/{card}', 'CardsController@show');
 
 Auth::routes();
 
