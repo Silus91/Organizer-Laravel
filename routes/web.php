@@ -17,6 +17,8 @@ Route::get('cards', 'CardsController@index');
 Route::get('cards/create', 'CardsController@create');
 Route::post('cards', 'CardsController@store');
 Route::get('cards/{card}', 'CardsController@show');
+Route::get('cards/{card}/edit', 'CardsController@edit');
+Route::patch('cards/{card}', 'CardsController@update');
 
 Auth::routes();
 

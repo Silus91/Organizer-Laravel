@@ -43,5 +43,17 @@ class CardsController extends Controller
     {
         return view('cards.show', compact('card'));
     }
+    public function edit(Cards $card)
+    {
+        return view('cards.edit', compact('card'));
+    }
+    public function update(Cards $card)
+    {
+        $data = request()->validate([
+            'name' => 'required|min:3'
+        ]);
+        $card->update($data);
+        return redirect('cards/' . $card->id);
+    }
 
 }
