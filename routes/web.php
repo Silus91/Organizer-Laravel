@@ -19,6 +19,7 @@ Route::post('cards', 'CardsController@store');
 Route::get('cards/{card}', 'CardsController@show');
 Route::get('cards/{card}/edit', 'CardsController@edit');
 Route::patch('cards/{card}', 'CardsController@update');
+Route::delete('cards/{card}', 'CardsController@destroy');
 
 Auth::routes();
 

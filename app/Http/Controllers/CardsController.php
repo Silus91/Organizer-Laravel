@@ -23,9 +23,8 @@ class CardsController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-           'name' => 'required|min:3',
-        ]);
+        $data = ($this->validateRequest());
+
 
         $user_id = Auth::user()->id;
         $card = new Cards();
@@ -49,11 +48,22 @@ class CardsController extends Controller
     }
     public function update(Cards $card)
     {
-        $data = request()->validate([
-            'name' => 'required|min:3'
-        ]);
+        $data = ($this->validateRequest());
         $card->update($data);
         return redirect('cards/' . $card->id);
+    }
+
+    public function destroy(Cards $card)
+    {
+        $card->delete();
+        return redirect('cards');
+    }
+
+    public function validateRequest( )
+    {
+        return request()->validate([
+            'name' => 'required|min:3'
+        ]);
     }
 
 }
