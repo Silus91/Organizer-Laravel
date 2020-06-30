@@ -33,9 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li>card1 </li>
-                        <li>card2 </li>
-                        <li>card3 </li>
+                        <li><a href="/cards">Cards</a> </li>
+
                         <!-- tutaj idzie lista card w navigacji jakis if statement jesli by chcial skakac pomiedzy nimi -->
                     </ul>
 
