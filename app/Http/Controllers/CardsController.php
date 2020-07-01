@@ -11,7 +11,6 @@ class CardsController extends Controller
     public function index()
     {
         $cards = Cards::userCards()->get();
-
         return view('cards.index', ['cards' => $cards]);
     }
 
@@ -24,18 +23,13 @@ class CardsController extends Controller
     public function store()
     {
         $data = ($this->validateRequest());
-
-
         $user_id = Auth::user()->id;
         $card = new Cards();
         $card->name = request('name');
         $card->user_id = $user_id;
         $card->save();
 
-
-//        Cards::create($data);
         return redirect('cards');
-
     }
 
     public function show(Cards $card)

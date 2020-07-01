@@ -15,7 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return 'all tasks';
+        return 'all tasks $tasks as $task';
     }
 
     /**

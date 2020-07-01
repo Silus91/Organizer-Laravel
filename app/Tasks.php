@@ -17,5 +17,4 @@ class Tasks extends Model
     {
         return $this->hasMany(\App\Task::class);
     }
-
 }
