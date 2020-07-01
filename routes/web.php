@@ -21,6 +21,8 @@ Route::get('cards/{card}/edit', 'CardsController@edit');
 Route::patch('cards/{card}', 'CardsController@update');
 Route::delete('cards/{card}', 'CardsController@destroy');
 
+
+Route::resource('cards.tasks', 'TasksController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

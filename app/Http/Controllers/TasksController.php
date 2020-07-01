@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cards;
 use App\Tasks;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        return 'all tasks';
     }
 
     /**
@@ -24,7 +25,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,7 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -46,7 +47,7 @@ class TasksController extends Controller
      */
     public function show(Tasks $tasks)
     {
-        //
+        return 'task id';
     }
 
     /**
@@ -82,4 +83,5 @@ class TasksController extends Controller
     {
         //
     }
+
 }

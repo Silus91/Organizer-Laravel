@@ -10,7 +10,7 @@ class Tasks extends Model
 
     public function card()
     {
-       return $this->belongsTo(\App\Cards::class);
+       return $this->belongsTo(\App\Cards::class, 'foreign_key');
     }
 
     public function task()
