@@ -14,9 +14,9 @@ class Cards extends Model
        return $this->belongsTo(\App\User::class);
     }
 
-    public function tasks()
+    public function lists()
     {
-        return $this->hasMany(\App\Tasks::class);
+        return $this->hasMany(\App\Lists::class);
     }
 
     public function attributes()

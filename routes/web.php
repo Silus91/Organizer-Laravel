@@ -22,7 +22,7 @@ Route::patch('cards/{card}', 'CardsController@update');
 Route::delete('cards/{card}', 'CardsController@destroy');
 
 
-Route::resource('cards.tasks', 'TasksController');
+Route::resource('cards.lists', 'ListsController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

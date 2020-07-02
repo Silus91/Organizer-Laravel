@@ -14,7 +14,7 @@
     <a href="/cards">Return</a>
     <a href="/cards/{{$card->id}}/edit">Edit card</a>
 <div>
-    <form action="/tasks" method="POST">
+    <form action="/cards/{card}/tasks" method="POST">
 
         <div class="input-group">
             <input type="text" name="name">

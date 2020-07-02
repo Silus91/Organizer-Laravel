@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cards;
-use App\Tasks;
+use App\Lists;
 use Illuminate\Http\Request;
 
-class TasksController extends Controller
+class ListsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return 'all tasks $tasks as $task';
+        return view('cards.tasks.index');
     }
 
     /**
@@ -25,7 +24,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,27 +35,27 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tasks  $tasks
+     * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function show(Tasks $tasks)
+    public function show(Lists $lists)
     {
-        return 'task id';
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tasks  $tasks
+     * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tasks $tasks)
+    public function edit(Lists $lists)
     {
         //
     }
@@ -65,10 +64,10 @@ class TasksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tasks  $tasks
+     * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tasks $tasks)
+    public function update(Request $request, Lists $lists)
     {
         //
     }
@@ -76,12 +75,11 @@ class TasksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tasks  $tasks
+     * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tasks $tasks)
+    public function destroy(Lists $lists)
     {
         //
     }
-
 }
