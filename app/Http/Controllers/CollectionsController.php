@@ -14,7 +14,9 @@ class CollectionsController extends Controller
      */
     public function index($card_id)
     {
-        //
+        $collections = Collection::where('card_id', '$card_id')->get();
+
+        return view('collections.index', compact('collections', 'card_id'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CollectionsController extends Controller
      */
     public function create($card_id)
     {
-        //
+        return view('cards.show', compact('card_id'));
     }
 
     /**
@@ -35,7 +37,16 @@ class CollectionsController extends Controller
      */
     public function store($card_id, Request $request)
     {
-        //
+//        Collection::create($request->all() + ['card_id' => $card_id]);
+//        return redirect('cards');
+
+        $data = ($this->validateRequest());
+        $collection = new Collection();
+        $collection->name = request('name');
+        $collection->card_id = $card_id;
+        $collection->save();
+
+        return redirect('/');
     }
 
     /**
@@ -81,5 +92,12 @@ class CollectionsController extends Controller
     public function destroy($card_id, Collection $collection)
     {
         //
+    }
+
+    public function validateRequest( )
+    {
+        return request()->validate([
+            'name' => 'required|min:3'
+        ]);
     }
 }

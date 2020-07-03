@@ -14,11 +14,11 @@
     <a href="/cards">Return</a>
     <a href="/cards/{{$card->id}}/edit">Edit card</a>
 <div>
-    <form action="/cards/{card}/tasks" method="POST">
+    <form action="/cards/{{$card->id}}/collection" method="POST">
 
         <div class="input-group">
             <input type="text" name="name">
-            <button type="submit">Save Task List</button>
+            <button type="submit">Save Collection</button>
         </div>
         @csrf
     </form>

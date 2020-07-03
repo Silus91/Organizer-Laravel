@@ -24,7 +24,7 @@ class CardsController extends Controller
     {
         $data = ($this->validateRequest());
         $user_id = Auth::user()->id;
-        $card = new Cards();
+        $card = new Card();
         $card->name = request('name');
         $card->user_id = $user_id;
         $card->save();
