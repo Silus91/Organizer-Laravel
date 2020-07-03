@@ -6,7 +6,7 @@
     <h1>Create New card</h1>
     <a href="/cards">Return</a>
 
-    <form action="/cards/{card}/lists" method="POST">
+    <form action="/cards/{card}/collections" method="POST">
 
         <div class="input-group">
             <input type="text" name="name">

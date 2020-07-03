@@ -3,20 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
-class Lists extends Model
+class Collection extends Model
 {
     protected $guarded = [];
 
     public function card()
     {
-       return $this->belongsTo(\App\Cards::class);
+        return $this->belongsTo(\App\Card::class);
     }
 
     public function task()
     {
         return $this->hasMany(\App\Task::class);
     }
-
 }

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Lists;
+use App\Collection;
 use Illuminate\Http\Request;
 
-class ListsController extends Controller
+class CollectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($card_id)
     {
-        return view('cards.tasks.index');
+        //
     }
 
     /**
@@ -22,7 +22,7 @@ class ListsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($card_id)
     {
         //
     }
@@ -33,7 +33,7 @@ class ListsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($card_id, Request $request)
     {
         //
     }
@@ -41,10 +41,10 @@ class ListsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Lists  $lists
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Lists $lists)
+    public function show($card_id, Collection $collection)
     {
         //
     }
@@ -52,10 +52,10 @@ class ListsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Lists  $lists
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lists $lists)
+    public function edit($card_id, Collection $collection)
     {
         //
     }
@@ -64,10 +64,10 @@ class ListsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lists  $lists
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lists $lists)
+    public function update($card_id, Request $request, Collection $collection)
     {
         //
     }
@@ -75,10 +75,10 @@ class ListsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Lists  $lists
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lists $lists)
+    public function destroy($card_id, Collection $collection)
     {
         //
     }

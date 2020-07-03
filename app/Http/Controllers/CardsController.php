@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cards;
+use App\Card;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +10,7 @@ class CardsController extends Controller
 {
     public function index()
     {
-        $cards = Cards::userCards()->get();
+        $cards = Card::userCards()->get();
         return view('cards.index', ['cards' => $cards]);
     }
 
@@ -32,22 +32,22 @@ class CardsController extends Controller
         return redirect('cards');
     }
 
-    public function show(Cards $card)
+    public function show(Card $card)
     {
         return view('cards.show', compact('card'));
     }
-    public function edit(Cards $card)
+    public function edit(Card $card)
     {
         return view('cards.edit', compact('card'));
     }
-    public function update(Cards $card)
+    public function update(Card $card)
     {
         $data = ($this->validateRequest());
         $card->update($data);
         return redirect('cards/' . $card->id);
     }
 
-    public function destroy(Cards $card)
+    public function destroy(Card $card)
     {
         $card->delete();
         return redirect('cards');

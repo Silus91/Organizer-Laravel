@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Cards extends Model
+class Card extends Model
 {
     protected $guarded = [];
 
@@ -14,9 +14,9 @@ class Cards extends Model
        return $this->belongsTo(\App\User::class);
     }
 
-    public function lists()
+    public function collection()
     {
-        return $this->hasMany(\App\Lists::class);
+        return $this->hasMany(\App\Collection::class);
     }
 
     public function attributes()
