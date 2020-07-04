@@ -4,9 +4,14 @@
         @foreach($collections as $collection)
             <li>
                 <div class="col-2">{{ $collection->name}}</div>
+                <a href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit collection</a>
+                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn btn-danger" type="submit">Delete collection</button>
+                </form>
             </li>
         @endforeach
 
     </ul>
-<a href="/cards/{{$card_id}}">{{$card_id}}</a>
 @endsection

@@ -23,6 +23,8 @@ Route::delete('cards/{card}', 'CardsController@destroy');
 
 
 Route::resource('cards.collections', 'CollectionsController');
+Route::resource('cards.collections.tasks', 'TasksController');
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\Collection;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +34,12 @@ class CardsController extends Controller
         return redirect('cards');
     }
 
-    public function show(Card $card)
+    public function show(Card $card, Collection $collection, Task $task)
     {
-        return view('cards.show', compact('card'));
+        $card_id = $card->id;
+        $collections = Collection::where('card_id', $card_id)->get();
+
+        return view('cards.show', compact('card', 'collections'));
     }
     public function edit(Card $card)
     {

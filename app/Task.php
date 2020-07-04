@@ -8,9 +8,9 @@ class Task extends Model
 {
     protected $guarded = [];
 
-    public function tasks()
+    public function collection()
     {
-       return $this->belongsTo(\App\Tasks::class);
+       return $this->belongsTo(\App\Collection::class);
     }
 }
 
