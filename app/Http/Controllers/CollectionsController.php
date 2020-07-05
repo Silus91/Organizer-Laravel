@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Card;
 use App\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class CollectionsController extends Controller
     public function index($card_id)
     {
         $collections = Collection::where('card_id', $card_id)->get();
-        return view('collections.index', compact('collections', 'card_id'));
+        return view('cards.show', compact('collections', 'card_id'));
     }
 
     /**
@@ -26,7 +27,6 @@ class CollectionsController extends Controller
      */
     public function create($card_id)
     {
-
         return view('cards.show', compact('card_id'));
     }
 
@@ -36,11 +36,11 @@ class CollectionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($card_id, Request $request)
+    public function store(Card $card, Request $request)
     {
         $data = ($this->validateRequest());
-        Collection::create($request->all() + ['card_id' => $card_id]);
-        return  redirect()->route('cards.collections.index', $card_id);
+        Collection::create($request->all() + ['card_id' => $card->id]);
+        return back();
     }
 
     /**
@@ -76,7 +76,7 @@ class CollectionsController extends Controller
     {
         $data = ($this->validateRequest());
         $collection->update($data);
-        return  redirect()->route('cards.collections.index', $card_id);
+        return redirect()->action('CardsController@show', [$card_id]);
     }
 
     /**
@@ -88,7 +88,7 @@ class CollectionsController extends Controller
     public function destroy($card_id, Collection $collection)
     {
         $collection->delete();
-        return  redirect()->route('cards.collections.index', $card_id);
+        return redirect()->action('CardsController@show', [$card_id]);
     }
 
     public function validateRequest( )

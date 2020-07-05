@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Card;
 use App\Task;
 use App\Collection;
 use Illuminate\Http\Request;
@@ -24,9 +25,9 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Collection $collection)
+    public function create(Collection $collection, Card $card)
     {
-        //
+        return view('cards.show', compact('card', 'collection'));
     }
 
     /**
@@ -35,9 +36,12 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($collection_id, Request $request)
     {
-        //
+       $data = ($this->validateRequest());
+        Task::create($request->all() + ['collection_id' => $collection_id]);
+        return redirect()->route('cards.show', $collection_id);
+
     }
 
     /**
@@ -57,9 +61,10 @@ class TasksController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Collection $collection, Task $task)
     {
-        //
+        return view('tasks.edit', compact('task', 'collection'));
     }
 
     /**
@@ -71,7 +76,11 @@ class TasksController extends Controller
      */
     public function update(Collection $collection, Request $request, Task $task)
     {
-        //
+        $data = ($this->validateRequest());
+        $task->update($data);
+        return  redirect()->route('cards.show', $collection->card_id);
+
+
     }
 
     /**
@@ -80,8 +89,19 @@ class TasksController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Collection $collection, Task $task)
+
+    public function destroy(Card $card, Collection $collection, Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->action('CardsController@show', [$card->id]);
+    }
+
+    public function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'required|min:3',
+            'value' => 'sometimes|min:3',
+            'body' => 'sometimes|min:3'
+        ]);
     }
 }

@@ -13,7 +13,7 @@ class Collection extends Model
         return $this->belongsTo(\App\Card::class);
     }
 
-    public function task()
+    public function tasks()
     {
         return $this->hasMany(\App\Task::class);
     }

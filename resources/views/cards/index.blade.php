@@ -8,7 +8,6 @@
 @foreach($cards as $card)
     <div class="row">
         <div class="col-2"><a href="/cards/{{ $card->id }}">{{ $card->name}}</a></div>
-{{--        <div class="col-2">{{ $card->user_id}}</div>--}}
     </div>
 
 @endforeach

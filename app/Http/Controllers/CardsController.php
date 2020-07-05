@@ -36,10 +36,12 @@ class CardsController extends Controller
 
     public function show(Card $card, Collection $collection, Task $task)
     {
+        $collection_id = $collection->id;
+        $tasks = Task::where('collection_id', $collection_id);
         $card_id = $card->id;
         $collections = Collection::where('card_id', $card_id)->get();
 
-        return view('cards.show', compact('card', 'collections'));
+        return view('cards.show', compact('card', 'collections', 'tasks'));
     }
     public function edit(Card $card)
     {
