@@ -36,12 +36,11 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($collection_id, Request $request)
+    public function store(Card $card, $collection_id, Request $request)
     {
        $data = ($this->validateRequest());
         Task::create($request->all() + ['collection_id' => $collection_id]);
-        return redirect()->route('cards.show', $collection_id);
-
+        return redirect()->action('CardsController@show', [$card->id]);
     }
 
     /**

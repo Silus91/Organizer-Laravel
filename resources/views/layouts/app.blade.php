@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li><a href="/cards">Cards</a> </li>
 
-                        <!-- tutaj idzie lista card w navigacji jakis if statement jesli by chcial skakac pomiedzy nimi -->
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -16,6 +16,4 @@
         @csrf
     </form>
     {{ $errors->first('title') }}
-
-
 @endsection
