@@ -21,7 +21,7 @@
                         {{$collection->name}}
                     </button>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm text-right">
                     <button class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit</button>
                     <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}" method="POST">
                         @method('DELETE')@csrf
@@ -77,7 +77,7 @@
                             <div class="col">
                                 <input type="text" class="form-control" name="name" placeholder="Collection name">
                             </div>
-                            <button class="btn btn-info" type="submit">Save Collection</button>
+                            <button class="btn btn-success" type="submit">Save Collection</button>
                             @csrf
                         </div>
                     </form>

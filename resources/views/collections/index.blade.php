@@ -10,6 +10,8 @@
                     @csrf
                     <button class="btn btn-danger" type="submit">Delete collection</button>
                 </form>
+                <button class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit</button>
+
             </li>
         @endforeach
 
