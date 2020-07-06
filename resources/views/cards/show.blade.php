@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="col-sm text-right">
-                    <button class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit</button>
+                    <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit</a>
                     <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}" method="POST">
                         @method('DELETE')@csrf
                         <button class="btn btn-danger" type="submit">x</button>
@@ -42,24 +42,31 @@
                         <div class="col-sm">
                             <p class="text-capitalize">{{$task->body}}</p>
                         </div>
+                        <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks/{{$task->id}}/edit">Edit</a>
+
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit">x</button>
                         </form>
-
                     </div>
                     @endforeach
                         <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
                             <div class="form-row">
                                 <div class="col">
                                     <input type="text" class="form-control" name="title" placeholder="Title">
+                                    {{ $errors->first('title') }}
+
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" name="value" placeholder="Value">
+                                    {{ $errors->first('value') }}
+
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" name="body" placeholder="Description">
+                                    {{ $errors->first('body') }}
+
                                 </div>
                                 <button class="btn btn-success" type="submit">Save task</button>
                             </div>
@@ -75,7 +82,7 @@
                     <form action="/cards/{{$card->id}}/collections" method="POST">
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" name="name" placeholder="Collection name">
+                                <input type="text" class="form-control" name="name" placeholder="Create New Collection name">
                             </div>
                             <button class="btn btn-success" type="submit">Save Collection</button>
                             @csrf

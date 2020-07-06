@@ -40,7 +40,7 @@ class TasksController extends Controller
     {
        $data = ($this->validateRequest());
         Task::create($request->all() + ['collection_id' => $collection_id]);
-        return redirect()->action('CardsController@show', [$card->id]);
+        return back();
     }
 
     /**
@@ -61,7 +61,7 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Collection $collection, Task $task)
+    public function edit(Card $card, Collection $collection, Task $task)
     {
         return view('tasks.edit', compact('task', 'collection'));
     }
@@ -73,13 +73,11 @@ class TasksController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Collection $collection, Request $request, Task $task)
+    public function update(Card $card, Collection $collection, Request $request, Task $task)
     {
         $data = ($this->validateRequest());
         $task->update($data);
-        return  redirect()->route('cards.show', $collection->card_id);
-
-
+        return redirect()->action('CardsController@show', [$card->id]);
     }
 
     /**
@@ -99,8 +97,8 @@ class TasksController extends Controller
     {
         return request()->validate([
             'title' => 'required|min:3',
-            'value' => 'sometimes|min:3',
-            'body' => 'sometimes|min:3'
+            'value' => 'sometimes',
+            'body' => 'sometimes'
         ]);
     }
 }
