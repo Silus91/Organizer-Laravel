@@ -79,7 +79,7 @@ class TasksController extends Controller
         $task->update($data);
         return redirect()->action('CardsController@show', [$card->id]);
     }
-
+//$task->toggleCompleted()->save();
     /**
      * Remove the specified resource from storage.
      *

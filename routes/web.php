@@ -23,6 +23,8 @@ Route::delete('cards/{card}', 'CardsController@destroy');
 
 
 Route::resource('cards.collections', 'CollectionsController');
+Route::patch('cards.collections.tasks', 'TasksController@update');
+
 Route::resource('cards.collections.tasks', 'TasksController');
 
 Auth::routes();
