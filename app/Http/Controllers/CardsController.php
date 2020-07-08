@@ -16,7 +16,6 @@ class CardsController extends Controller
         return view('cards.index', ['cards' => $cards]);
     }
 
-
     public function create()
     {
         return view('cards.create');
@@ -30,7 +29,6 @@ class CardsController extends Controller
         $card->name = request('name');
         $card->user_id = $user_id;
         $card->save();
-
         return redirect('cards');
     }
 
