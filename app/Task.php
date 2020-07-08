@@ -12,7 +12,7 @@ class Task extends Model
     {
        return $this->belongsTo(\App\Collection::class);
     }
-    
+
     public function toggleCompleted()
     {
         $this->completed = !$this->completed;

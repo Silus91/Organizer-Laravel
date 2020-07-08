@@ -34,7 +34,8 @@
                     @foreach($collection->tasks as $task)
                     <div class="row">
                         <div class="col-sm">
-                            <p class="text-capitalize"> {{$task->title}}</p>
+                            <p class="text-capitalize"> {{$task->title}} </p>
+{{--                            {{$task->completed == true ? '<s>{{$task->title}}</s>--}}
                         </div>
                         <div class="col-sm">
                             <p class="text-capitalize"> {{$task->value}}.</p>
@@ -42,6 +43,15 @@
                         <div class="col-sm">
                             <p class="text-capitalize">{{$task->body}}</p>
                         </div>
+                        <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
+                            @method('PATCH')
+                            @csrf
+
+
+                            <input type="hidden" name="completed" value="{{$task->completed}}" />
+
+                            <button class="btn btn-info" type="submit">{{$task->completed}}</button>
+                        </form>
                         <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks/{{$task->id}}/edit">Edit</a>
 
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">

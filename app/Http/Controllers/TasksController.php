@@ -63,7 +63,7 @@ class TasksController extends Controller
 
     public function edit(Card $card, Collection $collection, Task $task)
     {
-        return view('tasks.edit', compact('task', 'collection'));
+        return view('tasks.edit', compact('task', 'collection', 'card'));
     }
 
     /**
@@ -79,7 +79,21 @@ class TasksController extends Controller
         $task->update($data);
         return redirect()->action('CardsController@show', [$card->id]);
     }
-//$task->toggleCompleted()->save();
+
+    public function completed(Card $card, Collection $collection, Task $task)
+    {
+        if ($task->completed == 'false'){
+            $task->completed = 'true';
+            $task->update(['title' => $task->title, 'completed' => $task->completed]);
+            return redirect()->action('CardsController@show', [$card->id]);
+        }
+        else
+        {
+            $task->completed = 'false';
+            $task->update(['completed' => $task->completed]);
+            return redirect()->action('CardsController@show', [$card->id]);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
