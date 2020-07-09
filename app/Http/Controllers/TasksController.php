@@ -80,19 +80,13 @@ class TasksController extends Controller
         return redirect()->action('CardsController@show', [$card->id]);
     }
 
-    public function completed(Card $card, Collection $collection, Task $task)
+    public function completed(Card $card, Collection $collection, Task $task, Request $request)
     {
-        if ($task->completed == 'false'){
-            $task->completed = 'true';
-            $task->update(['title' => $task->title, 'completed' => $task->completed]);
-            return redirect()->action('CardsController@show', [$card->id]);
-        }
-        else
-        {
-            $task->completed = 'false';
-            $task->update(['completed' => $task->completed]);
-            return redirect()->action('CardsController@show', [$card->id]);
-        }
+
+        $task->completed = !$task->completed;
+        $task->update($request->only(['completed' => $task->completed]));
+
+        return redirect()->action('CardsController@show', [$card->id]);
     }
     /**
      * Remove the specified resource from storage.
@@ -110,7 +104,7 @@ class TasksController extends Controller
     public function validateRequest()
     {
         return request()->validate([
-            'title' => 'required|min:3',
+            'title' => 'sometimes',
             'value' => 'sometimes',
             'body' => 'sometimes'
         ]);

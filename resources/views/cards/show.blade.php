@@ -33,23 +33,32 @@
                 <div class="card-body">
                     @foreach($collection->tasks as $task)
                     <div class="row">
-                        <div class="col-sm">
-                            <p class="text-capitalize"> {{$task->title}} </p>
-{{--                            {{$task->completed == true ? '<s>{{$task->title}}</s>--}}
-                        </div>
-                        <div class="col-sm">
-                            <p class="text-capitalize"> {{$task->value}}.</p>
-                        </div>
-                        <div class="col-sm">
-                            <p class="text-capitalize">{{$task->body}}</p>
-                        </div>
-                        <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
+                        @if($task->completed)
+                            <div class="col-sm">
+                                <p class="text-capitalize"><s>{{$task->title}}</s>  </p>
+                            </div>
+                            <div class="col-sm">
+                                <p class="text-capitalize"> <s>{{$task->value}}</s></p>
+                            </div>
+                            <div class="col-sm">
+                                <p class="text-capitalize"><s>{{$task->body}}</s></p>
+                            </div>
+                        @else
+                            <div class="col-sm">
+                                <p class="text-capitalize"> {{$task->title}} </p>
+                            </div>
+                            <div class="col-sm">
+                                <p class="text-capitalize"> {{$task->value}}.</p>
+                            </div>
+                            <div class="col-sm">
+                                <p class="text-capitalize">{{$task->body}}</p>
+                            </div>
+                        @endif
+
+                        <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">
                             @method('PATCH')
                             @csrf
-
-
                             <input type="hidden" name="completed" value="{{$task->completed}}" />
-
                             <button class="btn btn-info" type="submit">{{$task->completed}}</button>
                         </form>
                         <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks/{{$task->id}}/edit">Edit</a>
@@ -66,17 +75,12 @@
                                 <div class="col">
                                     <input type="text" class="form-control" name="title" placeholder="Title">
                                     {{ $errors->first('title') }}
-
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" name="value" placeholder="Value">
-                                    {{ $errors->first('value') }}
-
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" name="body" placeholder="Description">
-                                    {{ $errors->first('body') }}
-
                                 </div>
                                 <button class="btn btn-success" type="submit">Save task</button>
                             </div>

@@ -22,7 +22,6 @@ Route::get('cards/{card}/edit', 'CardsController@edit');
 Route::patch('cards/{card}', 'CardsController@update');
 Route::delete('cards/{card}', 'CardsController@destroy');
 
-
 Route::resource('cards.collections', 'CollectionsController');
 
 Route::resource('cards.collections.tasks', 'TasksController');
