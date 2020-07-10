@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::patch('cards{card}/collections/{collection}/tasks/{task}/completed', 'TasksController@completed');
 
 Route::get('cards', 'CardsController@index');
 Route::get('cards/create', 'CardsController@create');
@@ -21,6 +20,9 @@ Route::get('cards/{card}', 'CardsController@show');
 Route::get('cards/{card}/edit', 'CardsController@edit');
 Route::patch('cards/{card}', 'CardsController@update');
 Route::delete('cards/{card}', 'CardsController@destroy');
+
+Route::patch('cards{card}/collections/{collection}/tasks/{task}/completed', 'TasksController@completed');
+
 
 Route::resource('cards.collections', 'CollectionsController');
 

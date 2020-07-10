@@ -82,7 +82,6 @@ class TasksController extends Controller
 
     public function completed(Card $card, Collection $collection, Task $task, Request $request)
     {
-
         $task->completed = !$task->completed;
         $task->update($request->only(['completed' => $task->completed]));
 
