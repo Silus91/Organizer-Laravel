@@ -21,14 +21,12 @@ class CardsController extends Controller
         return view('cards.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $data = ($this->validateRequest());
         $user_id = Auth::user()->id;
-        $card = new Card();
-        $card->name = request('name');
-        $card->user_id = $user_id;
-        $card->save();
+
+        $data = ($this->validateRequest());
+        Card::create($request->all() + ['user_id' => $user_id]);
         return redirect('cards');
     }
 
