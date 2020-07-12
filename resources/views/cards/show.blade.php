@@ -10,9 +10,11 @@
     </form>
 
     <a href="/cards">Return</a>
-    <a href="/cards/{{$card->id}}/edit">Edit card</a>
 
-    <div class="accordion" id="accordionExample">
+
+    @yield('modal')
+
+    <div class="accordion " id="accordionExample">
         @foreach($collections as $collection)
             <div class="card">
             <div class="card-header row" id="{{$collection->name}}">
@@ -22,7 +24,57 @@
                     </button>
                 </div>
                 <div class="col-sm text-right">
-                    <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/edit">Edit</a>
+
+                    <div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$collection->id}}">
+                                Edit
+                            </button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{$collection->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$collection->id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="/cards/{{$card->id}}/collections/{{$collection->id}}" method="POST">
+                                        @method('PATCH')
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Collection {{ $collection->name }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form">
+                                                <div class="col-sm-12">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" class="form-control" value="{{ $collection->name }}" id="title" name="name" placeholder="Name">
+                                                    {{ $errors->first('name') }}
+                                                </div>
+                                                @csrf
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-success" type="submit">Update Collection</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
                     <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}" method="POST">
                         @method('DELETE')@csrf
                         <button class="btn btn-danger" type="submit">x</button>
@@ -35,13 +87,13 @@
                     <div class="row">
                         @if($task->completed)
                             <div class="col-sm">
-                                <p class="text-capitalize"><s>{{$task->title}}</s>  </p>
+                                <p class="text-capitalize text-info"><s>{{$task->title}}</s>  </p>
                             </div>
                             <div class="col-sm">
-                                <p class="text-capitalize"> <s>{{$task->value}}</s></p>
+                                <p class="text-capitalize text-info"> <s>{{$task->value}}</s></p>
                             </div>
                             <div class="col-sm">
-                                <p class="text-capitalize"><s>{{$task->body}}</s></p>
+                                <p class="text-capitalize text-info"><s>{{$task->body}}</s></p>
                             </div>
                         @else
                             <div class="col-sm">
@@ -55,19 +107,76 @@
                             </div>
                         @endif
 
+
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
+
+
+
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">
                             @method('PATCH')
                             @csrf
                             <input type="hidden" name="completed" value="{{$task->completed}}" />
-                            <button class="btn btn-info" type="submit">{{$task->completed}}</button>
+                            @if($task->completed)
+                                <button class="btn btn-info" type="submit">Completed</button>
+                            @else
+                                <button class="btn btn-dark"  type="submit">Completed</button>
+                            @endif
                         </form>
-                        <a class="btn btn-link" href="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks/{{$task->id}}/edit">Edit</a>
+                        <div>
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$task->id}}">
+                                Edit
+                            </button>
+                        </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$task->id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form action="/cards/{{$card->id}}/collections/{{$task->collection_id}}/tasks/{{$task->id}}" method="POST">
+                                            @method('PATCH')
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Task {{ $task->title }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div class="form">
+                                                    <div class="col-sm-12">
+                                                        <label for="title">Title</label>
+                                                        <input type="text" class="form-control" value="{{ $task->title }}" id="title" name="title" placeholder="Title">
+                                                        {{ $errors->first('title') }}
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label for="value">Value</label>
+                                                        <input type="text" class="form-control" value="{{ $task->value }}" id="value" name="value" placeholder="Value">
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label for="body">Description</label>
+                                                        <input type="text" class="form-control" value="{{ $task->body }}" id="body" name="body" placeholder="Description">
+                                                    </div>
+                                                </div>
+                                                @csrf
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-success" type="submit">Update task</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit">x</button>
                         </form>
+                            </div>
                     </div>
                     @endforeach
                         <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">

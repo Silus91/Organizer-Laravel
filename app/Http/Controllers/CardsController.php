@@ -24,7 +24,6 @@ class CardsController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::user()->id;
-
         $data = ($this->validateRequest());
         Card::create($request->all() + ['user_id' => $user_id]);
         return redirect('cards');

@@ -14,9 +14,22 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($collection_id)
+    public function index(Collection $collection, Request $request)
     {
-        $tasks = Task::where('collection_id', $collection_id)->get();
+
+        $collection_id = $collection->id;
+
+        $tasks = Task::query();
+
+        if($request->get('completed'))
+        {
+            $tasks->where('completed', 'true');
+        }
+        return $tasks->get();
+
+
+//        $tasks = Task::where('collection_id', $collection_id)->get()->sort();
+
         return view('tasks.index', compact('tasks', 'collection_id'));
     }
 //title value body
@@ -87,6 +100,7 @@ class TasksController extends Controller
 
         return redirect()->action('CardsController@show', [$card->id]);
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -103,7 +117,7 @@ class TasksController extends Controller
     public function validateRequest()
     {
         return request()->validate([
-            'title' => 'sometimes',
+            'title' => 'required|min:3',
             'value' => 'sometimes',
             'body' => 'sometimes'
         ]);

@@ -34,8 +34,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="/cards">Cards</a> </li>
-
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
