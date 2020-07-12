@@ -40,7 +40,7 @@ class CardsController extends Controller
     }
     public function edit(Card $card)
     {
-        return view('cards.edit', compact('card'));
+        //
     }
     public function update(Card $card)
     {
