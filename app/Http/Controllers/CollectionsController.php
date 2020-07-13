@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Card;
 use App\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CollectionsController extends Controller
 {
@@ -62,7 +61,7 @@ class CollectionsController extends Controller
      */
     public function edit($card_id, Collection $collection)
     {
-        return view('collections.edit', compact('card_id', 'collection'));
+        //
     }
 
     /**

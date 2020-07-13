@@ -76,7 +76,7 @@ class TasksController extends Controller
 
     public function edit(Card $card, Collection $collection, Task $task)
     {
-        return view('tasks.edit', compact('task', 'collection', 'card'));
+        //
     }
 
     /**
