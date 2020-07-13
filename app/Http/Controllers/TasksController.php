@@ -32,7 +32,6 @@ class TasksController extends Controller
 
         return view('tasks.index', compact('tasks', 'collection_id'));
     }
-//title value body
     /**
      * Show the form for creating a new resource.
      *

@@ -8,13 +8,8 @@
         @csrf
         <button class="btn btn-danger" type="submit">Delete card</button>
     </form>
-
     <a href="/cards">Return</a>
-
-
         @includeIf('cards.edit_modal')
-
-
     <div class="accordion " id="accordionExample">
         @foreach($collections as $collection)
             <div class="card">
@@ -38,29 +33,15 @@
                 <div class="card-body">
                     @foreach($collection->tasks as $task)
                     <div class="row">
-                        @if($task->completed)
                             <div class="col-sm">
-                                <p class="text-capitalize text-info"><s>{{$task->title}}</s>  </p>
+                                <p class="text-capitalize">@if($task->completed)<s>{{$task->title}}</s>@else{{$task->title}}@endif</p>
                             </div>
                             <div class="col-sm">
-                                <p class="text-capitalize text-info"> <s>{{$task->value}}</s></p>
+                                <p class="text-capitalize">@if($task->completed)<s>{{$task->value}}</s>@else{{$task->value}}@endif</p>
                             </div>
                             <div class="col-sm">
-                                <p class="text-capitalize text-info"><s>{{$task->body}}</s></p>
+                                <p class="text-capitalize">@if($task->completed)<s>{{$task->body}}</s>@else{{$task->body}}@endif</p>
                             </div>
-                        @else
-                            <div class="col-sm">
-                                <p class="text-capitalize"> {{$task->title}} </p>
-                            </div>
-                            <div class="col-sm">
-                                <p class="text-capitalize"> {{$task->value}}.</p>
-                            </div>
-                            <div class="col-sm">
-                                <p class="text-capitalize">{{$task->body}}</p>
-                            </div>
-                        @endif
-
-
                             <div class="btn-group" role="group" aria-label="Basic example">
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">
                             @method('PATCH')
@@ -73,7 +54,6 @@
                             @endif
                         </form>
                         @include('tasks.edit_modal')
-
                         <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -82,6 +62,7 @@
                             </div>
                     </div>
                     @endforeach
+                    <div>
                         <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
                             <div class="form-row">
                                 <div class="col">
@@ -98,6 +79,7 @@
                             </div>
                             @csrf
                         </form>
+                    </div>
                 </div>
             </div>
         </div>
