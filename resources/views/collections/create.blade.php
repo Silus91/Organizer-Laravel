@@ -7,6 +7,7 @@
     <a href="/cards">Return</a>
 
     <form action="/cards/{card}/collections" method="POST">
+        {!! Form::open(['action' => 'CollectionsController@store', 'method' => 'POST']) !!}
 
         <div class="input-group">
             <input type="text" name="name">

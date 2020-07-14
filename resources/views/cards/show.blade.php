@@ -87,16 +87,17 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <form action="/cards/{{$card->id}}/collections" method="POST">
+                    {!! Form::open( [$card->id, 'action' => 'CollectionsController@store', 'method' => 'POST']) !!}
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" name="name" placeholder="Create New Collection name">
+                                {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Collection Name'])}}
                             </div>
-                            <button class="btn btn-success" type="submit">Save Collection</button>
+                            {{Form::submit('Submit', ['class' => 'btn btn-success'])}}
                             @csrf
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                     {{ $errors->first('name') }}
+
                 </div>
         </div>
     </div>
