@@ -9,8 +9,25 @@
         </div>
 
     @endforeach
+
+
     <div>
-    @include('cards.create')
+
+        {!! Form::open(['action' => 'CardsController@create', 'method' => 'POST']) !!}
+
+        <div>
+            {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Card Name'])}}
+            {{Form::submit('Submit', ['class' => 'btn btn-success'])}}
+
+{!! Form::close() !!}
+        </div>
+
+
+
     </div>
+{{--    --}}
+{{--    <div>--}}
+{{--    @include('cards.create')--}}
+{{--    </div>--}}
 </div>
 @endsection
