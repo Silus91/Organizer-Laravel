@@ -16,18 +16,13 @@ class TasksController extends Controller
      */
     public function index(Collection $collection, Request $request)
     {
-
         $collection_id = $collection->id;
-
         $tasks = Task::query();
-
         if($request->get('completed'))
         {
             $tasks->where('completed', 'true');
         }
         return $tasks->get();
-
-
 //        $tasks = Task::where('collection_id', $collection_id)->get()->sort();
 
         return view('tasks.index', compact('tasks', 'collection_id'));
@@ -53,29 +48,6 @@ class TasksController extends Controller
        $data = ($this->validateRequest());
         Task::create($request->all() + ['collection_id' => $collection_id]);
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Collection $collection, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-
-    public function edit(Card $card, Collection $collection, Task $task)
-    {
-        //
     }
 
     /**

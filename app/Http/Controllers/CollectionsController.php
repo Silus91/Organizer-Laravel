@@ -43,28 +43,6 @@ class CollectionsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Collection  $collection
-     * @return \Illuminate\Http\Response
-     */
-    public function show($card_id, Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Collection  $collection
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($card_id, Collection $collection)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
