@@ -38,10 +38,7 @@ class CardsController extends Controller
 
         return view('cards.show', compact('card', 'collections', 'tasks'));
     }
-    public function edit(Card $card)
-    {
-        //
-    }
+
     public function update(Card $card)
     {
         $data = ($this->validateRequest());

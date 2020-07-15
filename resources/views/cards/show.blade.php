@@ -97,7 +97,6 @@
                         </div>
                     {!! Form::close() !!}
                     {{ $errors->first('name') }}
-
                 </div>
         </div>
     </div>
