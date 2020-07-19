@@ -5,12 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class StoreCollectionRequest extends FormRequest
+class StoreTaskRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
+            'title' => 'required|min:3',
+            'value' => 'sometimes',
+            'body' => 'sometimes'
         ];
     }
 }

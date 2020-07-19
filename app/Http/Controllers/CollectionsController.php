@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Collection;
+use App\Http\Requests\StoreCollectionRequest;
 use Illuminate\Http\Request;
 
 class CollectionsController extends Controller
@@ -13,10 +14,10 @@ class CollectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($card_id)
+    public function index($cardId)
     {
-        $collections = Collection::where('card_id', $card_id)->get();
-        return view('cards.show', compact('collections', 'card_id'));
+        $collections = Collection::where('card_id', $cardId)->get();
+        return view('cards.show', compact('collections', 'cardId'));
     }
 
     /**
@@ -24,9 +25,9 @@ class CollectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($card_id)
+    public function create($cardId)
     {
-        return view('cards.show', compact('card_id'));
+        return view('cards.show', compact('cardId'));
     }
 
     /**
@@ -35,16 +36,10 @@ class CollectionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Card $card, Request $request)
+    public function store(Card $card, StoreCollectionRequest $request)
     {
-        $data = ($this->validateRequest());
         Collection::create($request->all() + ['card_id' => $card->id]);
         return back();
-
-
-        $userId = Auth::user()->id;
-        Card::create($request->all() + ['user_id' => $userId]);
-        return redirect('cards');
     }
 
     /**
@@ -54,11 +49,11 @@ class CollectionsController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function update($card_id, Request $request, Collection $collection)
+    public function update($cardId, StoreCollectionRequest $request, Collection $collection)
     {
         $data = ($this->validateRequest());
         $collection->update($data);
-        return redirect()->action('CardsController@show', [$card_id]);
+        return back();
     }
 
     /**
@@ -67,10 +62,10 @@ class CollectionsController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function destroy($card_id, Collection $collection)
+    public function destroy($cardId, Collection $collection)
     {
         $collection->delete();
-        return redirect()->action('CardsController@show', [$card_id]);
+        return redirect()->action('CardsController@show', [$cardId]);
     }
 
     public function validateRequest( )

@@ -6,6 +6,8 @@ use App\Card;
 use App\Task;
 use App\Collection;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTaskRequest;
+
 
 class TasksController extends Controller
 {
@@ -16,17 +18,7 @@ class TasksController extends Controller
      */
     public function index(Collection $collection, Request $request)
     {
-        //przerobic na camel case variables
-        $collection_id = $collection->id;
-        $tasks = Task::query();
-        if ($request->get('completed')) {
-            $tasks->where('completed', 'true');
-        }
-        dd('sss');
-        return $tasks->get();
-//        $tasks = Task::where('collection_id', $collection_id)->get()->sort();
-
-        return view('tasks.index', compact('tasks', 'collection_id'));
+        //
     }
     /**
      * Show the form for creating a new resource.
@@ -44,7 +36,7 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Card $card, $collection_id, Request $request)
+    public function store(Card $card, $collection_id, StoreTaskRequest $request)
     {
        $data = ($this->validateRequest());
         Task::create($request->all() + ['collection_id' => $collection_id]);
@@ -69,8 +61,7 @@ class TasksController extends Controller
     {
         $task->completed = !$task->completed;
         $task->update($request->only(['completed' => $task->completed]));
-
-        return redirect()->action('CardsController@show', [$card->id]);
+        return back();
     }
 
     /**

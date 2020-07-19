@@ -23,10 +23,4 @@ class Card extends Model
     {
         return $this->hasMany(\App\Attributes::class);
     }
-
-    public function scopeUserCards($query)
-    {
-        $user_id = Auth::user()->id;
-        return $query->where('user_id', $user_id);
-    }
 }

@@ -14,7 +14,6 @@ class CardsController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         return view('cards.index', ['cards' => $user->cards]);
     }
 
@@ -43,11 +42,7 @@ class CardsController extends Controller
     {
         $data = ($this->validateRequest());
         $card->update($data);
-        return redirect('cards/' . $card->id);
-
-        $userId = Auth::user()->id;
-        Card::create($request->all() + ['user_id' => $userId]);
-        return redirect('cards');
+        return back();
     }
 
     public function destroy(Card $card)
