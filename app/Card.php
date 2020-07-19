@@ -14,7 +14,7 @@ class Card extends Model
        return $this->belongsTo(\App\User::class);
     }
 
-    public function collection()
+    public function collections()
     {
         return $this->hasMany(\App\Collection::class);
     }

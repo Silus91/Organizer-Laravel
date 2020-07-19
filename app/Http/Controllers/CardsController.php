@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Collection;
+use App\Http\Requests\StoreCardRequest;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,9 @@ class CardsController extends Controller
 {
     public function index()
     {
-        $cards = Card::userCards()->get();
-        return view('cards.index', ['cards' => $cards]);
+        $user = Auth::user();
+
+        return view('cards.index', ['cards' => $user->cards]);
     }
 
     public function create()
@@ -21,22 +23,20 @@ class CardsController extends Controller
         return view('cards.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCardRequest $request)
     {
-        $user_id = Auth::user()->id;
-        $data = ($this->validateRequest());
-        Card::create($request->all() + ['user_id' => $user_id]);
+        $userId = Auth::user()->id;
+        Card::create($request->all() + ['user_id' => $userId]);
         return redirect('cards');
     }
 
     public function show(Card $card, Collection $collection, Task $task)
     {
-        $collection_id = $collection->id;
-        $tasks = Task::where('collection_id', $collection_id);
-        $card_id = $card->id;
-        $collections = Collection::where('card_id', $card_id)->get();
+        $collections = $card->collections()->with(['tasks' => function ($query) {
+            $query->orderBy('completed');
+        }])->get();
 
-        return view('cards.show', compact('card', 'collections', 'tasks'));
+        return view('cards.show', compact('card', 'collections'));
     }
 
     public function update(Card $card)
@@ -44,6 +44,10 @@ class CardsController extends Controller
         $data = ($this->validateRequest());
         $card->update($data);
         return redirect('cards/' . $card->id);
+
+        $userId = Auth::user()->id;
+        Card::create($request->all() + ['user_id' => $userId]);
+        return redirect('cards');
     }
 
     public function destroy(Card $card)
@@ -52,7 +56,7 @@ class CardsController extends Controller
         return redirect('cards');
     }
 
-    public function validateRequest( )
+    private function validateRequest( )
     {
         return request()->validate([
             'name' => 'required|min:3'

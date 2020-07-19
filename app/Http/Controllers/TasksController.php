@@ -16,12 +16,13 @@ class TasksController extends Controller
      */
     public function index(Collection $collection, Request $request)
     {
+        //przerobic na camel case variables
         $collection_id = $collection->id;
         $tasks = Task::query();
-        if($request->get('completed'))
-        {
+        if ($request->get('completed')) {
             $tasks->where('completed', 'true');
         }
+        dd('sss');
         return $tasks->get();
 //        $tasks = Task::where('collection_id', $collection_id)->get()->sort();
 

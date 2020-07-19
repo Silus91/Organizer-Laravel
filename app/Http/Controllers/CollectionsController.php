@@ -40,6 +40,11 @@ class CollectionsController extends Controller
         $data = ($this->validateRequest());
         Collection::create($request->all() + ['card_id' => $card->id]);
         return back();
+
+
+        $userId = Auth::user()->id;
+        Card::create($request->all() + ['user_id' => $userId]);
+        return redirect('cards');
     }
 
     /**

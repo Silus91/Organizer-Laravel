@@ -87,7 +87,7 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    {!! Form::open( [$card->id, 'action' => 'CollectionsController@store', 'method' => 'POST']) !!}
+                    {!! Form::open(['action' => ['CollectionsController@store', $card->id], 'method' => 'POST']) !!}
                         <div class="form-row">
                             <div class="col">
                                 {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Collection Name'])}}

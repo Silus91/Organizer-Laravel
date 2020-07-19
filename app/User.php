@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,7 +38,7 @@ class User extends Authenticatable
 
     public function cards()
     {
-        return $this->hasMany(\App\Cards::class);
+        return $this->hasMany(Card::class);
     }
 
 }
