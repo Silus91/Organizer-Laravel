@@ -47,7 +47,7 @@
             <div id="collapse{{$collection->id}}" class="collapse show" aria-labelledby="{{$collection->name}}" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="row">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <td>Title</td>
@@ -71,21 +71,24 @@
                                     </td>
 
                                     <td>
-                                        <div class="d-flex flex-row-reverse">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">
-                                                    @method('PATCH')
-                                                    @csrf
-                                                    <input type="hidden" name="completed" value="{{$task->completed}}" />
-                                                    <button class="btn @if($task->completed)btn-info @else btn-dark @endif" type="submit">Completed</button>
-                                                </form>
-                                                @include('tasks.edit_modal')
-                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger" type="submit">x</button>
-                                                </form>
-                                            </div>
+                                        <a class="btn btn-dark">dsfsdf</a>                                        <a class="btn btn-dark">dsfsdf</a>
+                                        <a class="btn btn-dark">dsfsdf</a>
+
+                        {{--                                        <div class="d-flex flex-row-reverse">--}}
+{{--                                            <div class="btn-group" role="group" aria-label="Basic example">--}}
+{{--                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">--}}
+{{--                                                    @method('PATCH')--}}
+{{--                                                    @csrf--}}
+{{--                                                    <input type="hidden" name="completed" value="{{$task->completed}}" />--}}
+{{--                                                    <button class="btn @if($task->completed)btn-info @else btn-dark @endif" type="submit">Completed</button>--}}
+{{--                                                </form>--}}
+{{--                                                @include('tasks.edit_modal')--}}
+{{--                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">--}}
+{{--                                                    @method('DELETE')--}}
+{{--                                                    @csrf--}}
+{{--                                                    <button class="btn btn-danger" type="submit">x</button>--}}
+{{--                                                </form>--}}
+{{--                                            </div>--}}
 
                                         </div>
 
