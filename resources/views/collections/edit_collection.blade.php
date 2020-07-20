@@ -1,11 +1,6 @@
-<div>
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$collection->id}}">
-        Edit
-    </button>
-</div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal{{$collection->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$collection->id}}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="editCollection{{$collection->id}}Modal" tabindex="-1" role="dialog" aria-labelledby="editCollection{{$collection->id}}ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <form action="/cards/{{$card->id}}/collections/{{$collection->id}}" method="POST">
                 @method('PATCH')
