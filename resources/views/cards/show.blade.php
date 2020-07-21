@@ -46,7 +46,7 @@
 
             <div id="collapse{{$collection->id}}" class="collapse show" aria-labelledby="{{$collection->name}}" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row table-responsive">
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -54,11 +54,10 @@
                                 <td>Value</td>
                                 <td>Description</td>
                                 <td>Actions</td>
-
                             </tr>
                             </thead>
-                            @foreach($collection->tasks as $task)
                             <tbody>
+                            @foreach($collection->tasks as $task)
                                 <tr>
                                     <td>
                                         @if($task->completed)<s>{{$task->title}}</s>@else{{$task->title}}@endif
@@ -69,60 +68,52 @@
                                     <td>
                                         @if($task->completed)<s>{{$task->body}}</s>@else{{$task->body}}@endif
                                     </td>
-
                                     <td>
-                                        <a class="btn btn-dark">dsfsdf</a>                                        <a class="btn btn-dark">dsfsdf</a>
-                                        <a class="btn btn-dark">dsfsdf</a>
-
-                        {{--                                        <div class="d-flex flex-row-reverse">--}}
-{{--                                            <div class="btn-group" role="group" aria-label="Basic example">--}}
-{{--                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">--}}
-{{--                                                    @method('PATCH')--}}
-{{--                                                    @csrf--}}
-{{--                                                    <input type="hidden" name="completed" value="{{$task->completed}}" />--}}
-{{--                                                    <button class="btn @if($task->completed)btn-info @else btn-dark @endif" type="submit">Completed</button>--}}
-{{--                                                </form>--}}
-{{--                                                @include('tasks.edit_modal')--}}
-{{--                                                <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">--}}
-{{--                                                    @method('DELETE')--}}
-{{--                                                    @csrf--}}
-{{--                                                    <button class="btn btn-danger" type="submit">x</button>--}}
-{{--                                                </form>--}}
-{{--                                            </div>--}}
-
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}/completed" method="POST">
+                                                @method('PATCH')
+                                                @csrf
+                                                <input type="hidden" name="completed" value="{{$task->completed}}" />
+                                                <button class="btn @if($task->completed)btn-info @else btn-dark @endif" type="submit">/</button>
+                                            </form>
+                                            @include('tasks.edit_modal')
+                                            <form action="/cards/{{ $collection->card_id }}/collections/{{$collection->id}}/tasks/{{$task->id}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <a class="btn btn-danger" type="submit">x</a>
+                                            </form>
                                         </div>
-
                                     </td>
                                 </tr>
-                            </tbody>
                             @endforeach
+                            <tr>
+                                <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
+                                    <td >
+                                        <input type="text" class="form-control" name="title" placeholder="Title">
+                                        {{ $errors->first('title') }}
+                                    </td>
+                                    <td >
+                                        <input type="text" class="form-control"   name="value" placeholder="Value">
+                                    </td>
+                                    <td >
+                                        <input type="text" class="form-control"  name="body" placeholder="Description">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success" type="submit">Save task</button>
+                                    </td>
+                                    @csrf
+                                </form>
+                            </tr>
+                            </tbody>
 
                         </table>
-
-
-
-
-
-
                     </div>
                     <div>
-                        <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="text" class="form-control" name="title" placeholder="Title">
-                                    {{ $errors->first('title') }}
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="value" placeholder="Value">
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="body" placeholder="Description">
-                                </div>
-                                <button class="btn btn-success" type="submit">Save task</button>
-                            </div>
-                            @csrf
-                        </form>
+
+
+
                     </div>
+
                 </div>
             </div>
         </div>
