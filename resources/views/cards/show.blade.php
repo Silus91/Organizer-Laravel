@@ -90,7 +90,7 @@
                                 <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
                                     <td >
                                         <input type="text" class="form-control" name="title" placeholder="Title">
-                                        {{ $errors->first('title') }}
+                                            {{ $errors->first('title') }}
                                     </td>
                                     <td >
                                         <input type="text" class="form-control"   name="value" placeholder="Value">
@@ -109,11 +109,7 @@
                         </table>
                     </div>
                     <div>
-
-
-
                     </div>
-
                 </div>
             </div>
         </div>
