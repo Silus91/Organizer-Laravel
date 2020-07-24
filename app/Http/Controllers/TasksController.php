@@ -38,7 +38,7 @@ class TasksController extends Controller
      */
     public function store(Card $card, $collection_id, StoreTaskRequest $request)
     {
-       $data = ($this->validateRequest());
+       //$data = ($this->validateRequest());
         Task::create($request->all() + ['collection_id' => $collection_id]);
         return back();
     }
