@@ -86,24 +86,24 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr>
-                                <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
-                                    <td >
-                                        <input type="text" class="form-control" name="title" placeholder="Title">
-                                            {{ $errors->first('title') }}
-                                    </td>
-                                    <td >
-                                        <input type="text" class="form-control"   name="value" placeholder="Value">
-                                    </td>
-                                    <td >
-                                        <input type="text" class="form-control"  name="body" placeholder="Description">
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-success" type="submit">Save task</button>
-                                    </td>
-                                    @csrf
-                                </form>
-                            </tr>
+                                <tr>
+                                    <form action="/cards/{{$collection->card_id}}/collections/{{$collection->id}}/tasks" method="POST">
+                                        <td >
+                                            <input type="text" class="form-control" name="title" placeholder="Title">
+                                                {{ $errors->first('title') }}
+                                        </td>
+                                        <td >
+                                            <input type="text" class="form-control" name="value" placeholder="Value">
+                                        </td>
+                                        <td >
+                                            <input type="text" class="form-control" name="body" placeholder="Description">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" type="submit">Save task</button>
+                                        </td>
+                                        @csrf
+                                    </form>
+                                </tr>
                             </tbody>
 
                         </table>
