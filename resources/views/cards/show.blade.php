@@ -114,20 +114,19 @@
             </div>
         </div>
         @endforeach
-        <div>
-            <div class="card">
-                <div class="card-header">
-                    <form action="/cards/{{$collection->card_id}}/collections" method="POST">
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="text" class="form-control" name="title" placeholder="Title">
-                                {{ $errors->first('title') }}
-                                <button class="btn btn-success" type="submit">Save Collection</button>
-                            </div>
-                            @csrf
+        <div class="card">
+            <div class="card-header">
+                <form action="/cards/{{$collection->card_id}}/collections" method="POST">
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="title" placeholder="Title">
+                            {{ $errors->first('title') }}
+                            <button class="btn btn-success" type="submit">Save Collection</button>
                         </div>
-                    </form>
-                </div>
+                        @csrf
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
