@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="deleteCollection{{$collection->id}}Modal" tabindex="-1" role="dialog" aria-labelledby="deleteCollection{{$collection->id}}ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

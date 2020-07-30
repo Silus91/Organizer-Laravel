@@ -2,12 +2,8 @@
 
 @section('content')
     <h1>Tasks</h1>
-
-    <h1>Create New card</h1>
     <a href="/cards">Return</a>
-
     <form action="/cards/{card}/collections" method="POST">
-        {!! Form::open(['action' => 'CollectionsController@store', 'method' => 'POST']) !!}
 
         <div class="input-group">
             <input type="text" name="name">
