@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="editCollection{{$collection->id}}Modal" tabindex="-1" role="dialog" aria-labelledby="editCollection{{$collection->id}}ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
