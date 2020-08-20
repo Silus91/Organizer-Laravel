@@ -3,9 +3,7 @@
 @section('content')
 
 <div class="container">
-
     <h1 class="text-capitalize">{{$card->name}}</h1>
-
     <div class="btn-group" role="group" aria-label="Basic example">
         <a href="/cards" class="btn btn-info text-white">Return</a>
         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editCardModal">
