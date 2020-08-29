@@ -17,4 +17,8 @@ class Attributes extends Model
     {
         return $this->hasMany(\App\Attribute::class);
     }
+    public function task()
+    {
+        return $this->hasMany(\App\Attribute::class);
+    }
 }
